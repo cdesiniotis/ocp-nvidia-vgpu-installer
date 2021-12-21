@@ -69,6 +69,9 @@ spec:
           name: vfio
         - mountPath: /sys/fs/cgroup
           name: cgroup
+        - mountPath: /run/nvidia
+          name: run-nvidia
+          mountPropagation: Bidirectional
       volumes:
       - hostPath:
           path: /sys/fs/cgroup
@@ -78,5 +81,9 @@ spec:
           path: /dev/vfio/
           type: Directory
         name: vfio
+      - hostPath:
+          path: /run/nvidia
+          type: DirectoryOrCreate
+        name: run-nvidia
       nodeSelector:
         hasGpu: "true"
